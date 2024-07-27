@@ -84,14 +84,8 @@ class Prices {
 	public function lowest_price_html( \WC_Product $wc_product ): string {
 
 		$days_number = $this->settings_data->get_days_number();
-		$count_from  = $this->settings_data->get_count_from();
 
-		if ( in_array( $count_from, [ 'sale_start', 'sale_start_inclusive' ] ) && $wc_product->is_on_sale() ) {
-			$lowest = $this->history_storage->get_minimal_from_sale_start( $wc_product, $days_number, $count_from );
-		} else {
-			$lowest = $this->history_storage->get_minimal( $wc_product->get_id(), $days_number );
-		}
-
+		$lowest = $this->lowest_price_raw_non_taxed( $wc_product );
 		$lowest = $this->taxes->apply_taxes( $lowest, $wc_product );
 		/**
 		 * Filter the lowest price raw value before displaying it as HTML (taxes already applied).
@@ -108,6 +102,27 @@ class Prices {
 		}
 
 		return $this->display_from_template( $lowest, $days_number );
+	}
+
+	/**
+	 * Get the lowest price raw value (non-taxed).
+	 *
+	 * @since {VERSION}
+	 *
+	 * @param \WC_Product $wc_product WC Product.
+	 *
+	 * @return float
+	 */
+	public function lowest_price_raw_non_taxed( \WC_Product $wc_product ): float {
+
+		$days_number = $this->settings_data->get_days_number();
+		$count_from  = $this->settings_data->get_count_from();
+
+		if ( in_array( $count_from, [ 'sale_start', 'sale_start_inclusive' ] ) && $wc_product->is_on_sale() ) {
+			return $this->history_storage->get_minimal_from_sale_start( $wc_product, $days_number, $count_from );
+		}
+
+		return (float) $this->history_storage->get_minimal( $wc_product->get_id(), $days_number );
 	}
 
 	/**
