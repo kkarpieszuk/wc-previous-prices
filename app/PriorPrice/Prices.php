@@ -85,7 +85,7 @@ class Prices {
 
 		$days_number = $this->settings_data->get_days_number();
 
-		$lowest = $this->lowest_price_raw_non_taxed( $wc_product );
+		$lowest = $this->get_lowest_price_raw_non_taxed( $wc_product );
 		$lowest = $this->taxes->apply_taxes( $lowest, $wc_product );
 		/**
 		 * Filter the lowest price raw value before displaying it as HTML (taxes already applied).
@@ -113,7 +113,7 @@ class Prices {
 	 *
 	 * @return float
 	 */
-	public function lowest_price_raw_non_taxed( \WC_Product $wc_product ): float {
+	public function get_lowest_price_raw_non_taxed( \WC_Product $wc_product ): float {
 
 		$days_number = $this->settings_data->get_days_number();
 		$count_from  = $this->settings_data->get_count_from();
