@@ -27,7 +27,7 @@ define( 'WC_PRICE_HISTORY_VERSION', '2.0.1' );
  *
  * @return string
  */
-function wc_price_history_version(): string {
+function get_wc_price_history_version(): string {
 	return WC_PRICE_HISTORY_VERSION;
 }
 
