@@ -2,7 +2,7 @@ jQuery(document).ready(function($) {
 
 	$('form.variations_form').on('found_variation', function(event, variation) {
 
-		const $lowestPricePlaceholder = $( '.wc-price-history.prior-price-value .wc-price-history.prior-price.lowest-raw-value'),
+		const $lowestPricePlaceholder = $( '.wc-price-history.prior-price-value .wc-price-history-lowest-raw-value'),
 		  lowestInVariation = variation._wc_price_history_lowest_price;
 
 		 if ( $lowestPricePlaceholder.length ) {

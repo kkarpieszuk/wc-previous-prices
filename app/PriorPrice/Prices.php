@@ -156,7 +156,7 @@ class Prices {
 
 		$line_through_class = $this->settings_data->get_display_line_through() ? 'line-through' : '';
 		$price_format       = get_woocommerce_price_format();
-		$price_format       = str_replace( '%2$s', '<span class="wc-price-history prior-price lowest-raw-value">%2$s</span>', $price_format );
+		$price_format       = str_replace( '%2$s', '<span class="wc-price-history-lowest-raw-value">%2$s</span>', $price_format );
 
 		$wc_price = wc_price(
 			$price,
