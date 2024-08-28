@@ -117,6 +117,9 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 == Changelog ==
 
+= {VERSION} =
+* New: Additional public methods for external integrations. (#91)
+
 = 2.0.0 =
 * New: Plugin scans all product to start logging price history before any interaction with the product. (#84)
 * New: Plugin allows to clean the whole pricing history (#87)
