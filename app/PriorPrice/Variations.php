@@ -17,6 +17,13 @@ class Variations {
 	 */
 	private $prices;
 
+	/**
+	 * Constructor.
+	 *
+	 * @since {VERSION}
+	 *
+	 * @param Prices $prices Prices object.
+	 */
 	public function __construct( Prices $prices ) {
 
 		$this->prices = $prices;
