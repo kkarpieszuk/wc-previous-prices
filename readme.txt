@@ -120,7 +120,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 = {VERSION} =
 * New: Additional public methods for external integrations. (#91)
 * Fixed: Price from sale start was incorrectly included into history checking if product was on sale for at least one day (#89)
-* Fixed: Price history was not updated on product variations when variant selection was changed (#79)
+* Fixed: Displayed price history was not updated on product screen when variant selection was changed (#79)
 
 = 2.0.0 =
 * New: Plugin scans all product to start logging price history before any interaction with the product. (#84)
