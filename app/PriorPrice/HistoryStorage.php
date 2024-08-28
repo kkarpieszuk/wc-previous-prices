@@ -255,6 +255,29 @@ class HistoryStorage {
 	}
 
 	/**
+	 * Delete price from history.
+	 *
+	 * @since {VERSION}
+	 *
+	 * @param int   $product_id Product ID.
+	 * @param int   $timestamp  Timestamp.
+	 *
+	 * @return bool
+	 */
+	public function delete_price( int $product_id, int $timestamp ): bool {
+
+		$history = $this->get_history( $product_id );
+
+		if ( ! isset( $history[ $timestamp ] ) ) {
+			return false;
+		}
+
+		unset( $history[ $timestamp ] );
+
+		return (bool) $this->save_history( $product_id, $history );
+	}
+
+	/**
 	 * Clean history.
 	 *
 	 * @since 2.0

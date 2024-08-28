@@ -6,7 +6,7 @@ Tags: omnibus, WooCommerce, prices, history, 30days
 Requires at least: 5.8
 Tested up to: 6.5.2
 Requires PHP: 7.2
-Stable tag: 2.0.1
+Stable tag: {VERSION}
 License: MIT License
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
@@ -117,7 +117,8 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 == Changelog ==
 
-= 2.0.1 =
+= {VERSION} =
+* New: Additional public methods for external integrations. (#91)
 * Fixed: Price from sale start was incorrectly included into history checking if product was on sale for at least one day (#89)
 
 = 2.0.0 =
