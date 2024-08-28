@@ -40,6 +40,9 @@ class Hooks {
 		$prices = new Prices( $history_storage, $settings_data, new Taxes() );
 		$prices->register_hooks();
 
+		$variations = new Variations( $prices );
+		$variations->register_hooks();
+
 		$updates = new ProductUpdates( $history_storage );
 		$updates->register_hooks();
 

@@ -126,6 +126,22 @@ class Prices {
 	}
 
 	/**
+	 * Get the lowest price raw value (taxed).
+	 *
+	 * @since {VERSION}
+	 *
+	 * @param \WC_Product $wc_product WC Product.
+	 *
+	 * @return float
+	 */
+	public function get_lowest_price_raw_taxed( \WC_Product $wc_product ): float {
+
+		$price = $this->get_lowest_price_raw_non_taxed( $wc_product );
+
+		return $this->taxes->apply_taxes( $price, $wc_product );
+	}
+
+	/**
 	 * Display price value HTML.
 	 *
 	 * Optionally adds CSS classes to style it.
@@ -139,8 +155,17 @@ class Prices {
 	private function display_price_value_html( float $price ) : string {
 
 		$line_through_class = $this->settings_data->get_display_line_through() ? 'line-through' : '';
+		$price_format       = get_woocommerce_price_format();
+		$price_format       = str_replace( '%2$s', '<span class="wc-price-history prior-price lowest-raw-value">%2$s</span>', $price_format );
 
-		return '<span class="wc-price-history prior-price-value ' . $line_through_class .'">' . wc_price( $price ) . '</span>';
+		$wc_price = wc_price(
+			$price,
+			[
+				'price_format' => $price_format,
+			]
+		);
+
+		return '<span class="wc-price-history prior-price-value ' . $line_through_class .'">' . $wc_price . '</span>';
 	}
 
 	/**
