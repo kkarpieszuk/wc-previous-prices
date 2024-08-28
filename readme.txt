@@ -6,7 +6,7 @@ Tags: omnibus, WooCommerce, prices, history, 30days
 Requires at least: 5.8
 Tested up to: 6.5.2
 Requires PHP: 7.2
-Stable tag: 2.0.0
+Stable tag: {VERSION}
 License: MIT License
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
