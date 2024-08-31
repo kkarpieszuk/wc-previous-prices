@@ -14,7 +14,11 @@
 
 use PriorPrice\Hooks;
 
-if ( ! function_exists( 'wcpricehistory_fs' ) && function_exists( 'fs_dynamic_init' ) ) {
+require_once __DIR__ . '/vendor/autoload.php';
+
+define( 'WC_PRICE_HISTORY_VERSION', '{VERSION}' );
+
+if ( ! function_exists( 'wcpricehistory_fs' ) ) {
 	// Create a helper function for easy SDK access.
 	/** @phpstan-ignore-next-line */
 	function wcpricehistory_fs() {
@@ -25,9 +29,6 @@ if ( ! function_exists( 'wcpricehistory_fs' ) && function_exists( 'fs_dynamic_in
 			if ( ! defined( 'WP_FS__PRODUCT_16371_MULTISITE' ) ) {
 				define( 'WP_FS__PRODUCT_16371_MULTISITE', true );
 			}
-
-			// Include Freemius SDK.
-			require_once dirname(__FILE__) . '/freemius/start.php';
 
 			/** @phpstan-ignore-next-line */
 			$wcpricehistory_fs = fs_dynamic_init( [
@@ -58,12 +59,6 @@ if ( ! function_exists( 'wcpricehistory_fs' ) && function_exists( 'fs_dynamic_in
 	// Signal that SDK was initiated.
 	do_action( 'wcpricehistory_fs_loaded' );
 }
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-require_once __DIR__ . '/constants.php';
-
-define( 'WC_PRICE_HISTORY_VERSION', '{VERSION}' );
 
 /**
  * Get the plugin version.
