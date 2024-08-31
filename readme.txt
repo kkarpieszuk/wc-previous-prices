@@ -1,8 +1,9 @@
 === WC Price History for Omnibus ===
 
 Plugin Name: WC Price History
+Short Description: Show the lowest product price in the last 30 days. Configurable, works with Omnibus European Union directive by default.
 Contributors: kkarpieszuk
-Tags: omnibus, WooCommerce, prices, history, 30days
+Tags: omnibus, WooCommerce, prices, history, 30days, lowest
 Requires at least: 5.8
 Tested up to: 6.6.1
 Requires PHP: 7.2
