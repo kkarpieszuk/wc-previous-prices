@@ -18,7 +18,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 require_once __DIR__ . '/constants.php';
 
-define( 'WC_PRICE_HISTORY_VERSION', '{VERSION}' );
+define( 'WC_PRICE_HISTORY_VERSION', '2.1' );
 
 if ( ! function_exists( 'wcpricehistory_fs' ) ) {
 	// Create a helper function for easy SDK access.

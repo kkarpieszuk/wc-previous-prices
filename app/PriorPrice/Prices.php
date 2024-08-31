@@ -107,7 +107,7 @@ class Prices {
 	/**
 	 * Get the lowest price raw value (non-taxed).
 	 *
-	 * @since {VERSION}
+	 * @since 2.1
 	 *
 	 * @param \WC_Product $wc_product WC Product.
 	 *
@@ -128,7 +128,7 @@ class Prices {
 	/**
 	 * Get the lowest price raw value (taxed).
 	 *
-	 * @since {VERSION}
+	 * @since 2.1
 	 *
 	 * @param \WC_Product $wc_product WC Product.
 	 *

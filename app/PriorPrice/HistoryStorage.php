@@ -257,7 +257,7 @@ class HistoryStorage {
 	/**
 	 * Delete price from history.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1
 	 *
 	 * @param int   $product_id Product ID.
 	 * @param int   $timestamp  Timestamp.

@@ -8,7 +8,7 @@ use WC_Product_Variation;
 /**
  * Variations class.
  *
- * @since {VERSION}
+ * @since 2.1
  */
 class Variations {
 
@@ -20,7 +20,7 @@ class Variations {
 	/**
 	 * Constructor.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1
 	 *
 	 * @param Prices $prices Prices object.
 	 */
@@ -32,7 +32,7 @@ class Variations {
 	/**
 	 * Register hooks.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1
 	 *
 	 * @return void
 	 */
@@ -43,7 +43,7 @@ class Variations {
 	/**
 	 * Add history to variation.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1
 	 *
 	 * @param array<string>        $variation_attributes Attributes.
 	 * @param WC_Product_Variable  $product_variable     Parent variable product.
