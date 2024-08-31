@@ -15,8 +15,7 @@
             "PriorPrice\\": "app/PriorPrice"
         },
         "files": [
-            "vendor/freemius/wordpress-sdk/start.php",
-            "constants.php"
+            "vendor/freemius/wordpress-sdk/start.php"
         ]
     },
     "require-dev": {
