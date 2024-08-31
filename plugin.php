@@ -14,50 +14,49 @@
 
 use PriorPrice\Hooks;
 
-if ( ! function_exists( 'wcpricehistory_fs' ) ) {
-    // Create a helper function for easy SDK access.
-	/**
-	 * @return Freemius
-	 */
-    function wcpricehistory_fs() {
-        global $wcpricehistory_fs;
+if ( ! function_exists( 'wcpricehistory_fs' ) && function_exists( 'fs_dynamic_init' ) ) {
+	// Create a helper function for easy SDK access.
+	/** @phpstan-ignore-next-line */
+	function wcpricehistory_fs() {
+		global $wcpricehistory_fs;
 
-        if ( ! isset( $wcpricehistory_fs ) ) {
-            // Activate multisite network integration.
-            if ( ! defined( 'WP_FS__PRODUCT_16371_MULTISITE' ) ) {
-                define( 'WP_FS__PRODUCT_16371_MULTISITE', true );
-            }
+		if ( ! isset( $wcpricehistory_fs ) ) {
+			// Activate multisite network integration.
+			if ( ! defined( 'WP_FS__PRODUCT_16371_MULTISITE' ) ) {
+				define( 'WP_FS__PRODUCT_16371_MULTISITE', true );
+			}
 
-            // Include Freemius SDK.
-            require_once dirname(__FILE__) . '/freemius/start.php';
+			// Include Freemius SDK.
+			require_once dirname(__FILE__) . '/freemius/start.php';
 
-            $wcpricehistory_fs = fs_dynamic_init( array(
-                'id'                  => '16371',
-                'slug'                => 'wc-price-history',
-                'type'                => 'plugin',
-                'public_key'          => 'pk_d51703cdb8b2e359609741027d67a',
-                'is_premium'          => false,
-                'has_addons'          => false,
-                'has_paid_plans'      => false,
-                'menu'                => array(
-                    'slug'           => 'wc-price-history',
-                    'account'        => false,
-                    'contact'        => false,
-                    'support'        => false,
-                    'parent'         => array(
-                        'slug' => 'woocommerce',
-                    ),
-                ),
-            ) );
-        }
+			/** @phpstan-ignore-next-line */
+			$wcpricehistory_fs = fs_dynamic_init( [
+				'id'                  => '16371',
+				'slug'                => 'wc-price-history',
+				'type'                => 'plugin',
+				'public_key'          => 'pk_d51703cdb8b2e359609741027d67a',
+				'is_premium'          => false,
+				'has_addons'          => false,
+				'has_paid_plans'      => false,
+				'menu'                => [
+					'slug'           => 'wc-price-history',
+					'account'        => false,
+					'contact'        => false,
+					'support'        => false,
+					'parent'         => [
+						'slug' => 'woocommerce',
+					],
+				],
+			] );
+		}
 
-        return $wcpricehistory_fs;
-    }
+		return $wcpricehistory_fs;
+	}
 
-    // Init Freemius.
-    wcpricehistory_fs();
-    // Signal that SDK was initiated.
-    do_action( 'wcpricehistory_fs_loaded' );
+	// Init Freemius.
+	wcpricehistory_fs();
+	// Signal that SDK was initiated.
+	do_action( 'wcpricehistory_fs_loaded' );
 }
 
 require_once __DIR__ . '/vendor/autoload.php';
