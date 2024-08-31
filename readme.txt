@@ -119,6 +119,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 = {VERSION} =
 * New: Additional public methods for external integrations. (#91)
+* New: Freemius integration. (#94)
 * Fixed: Price from sale start was incorrectly included into history checking if product was on sale for at least one day (#89)
 * Fixed: Displayed price history was not updated on product screen when variant selection was changed (#79)
 

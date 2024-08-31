@@ -13,7 +13,10 @@
     "autoload": {
         "psr-4": {
             "PriorPrice\\": "app/PriorPrice"
-        }
+        },
+        "files": [
+            "vendor/freemius/wordpress-sdk/start.php"
+        ]
     },
     "require-dev": {
         "phpstan/phpstan": "^1.9",
@@ -29,5 +32,8 @@
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
+    },
+    "require": {
+        "freemius/wordpress-sdk": "^2.7"
     }
 }
