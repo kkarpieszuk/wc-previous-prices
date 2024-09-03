@@ -79,9 +79,9 @@ class HistoryStorage {
 		}
 
 		if ( $count_from === 'sale_start_inclusive' ) {
-			$sale_start_timestamp = $sale_start->getTimestamp()  + DAY_IN_SECONDS;
+			$sale_start_timestamp = $sale_start->getOffsetTimestamp()  + DAY_IN_SECONDS;
 		} else {
-			$sale_start_timestamp = $sale_start->getTimestamp();
+			$sale_start_timestamp = $sale_start->getOffsetTimestamp();
 		}
 
 		$history = $this->get_history( $wc_product->get_id() );

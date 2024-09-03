@@ -7,7 +7,7 @@ Tags: omnibus, WooCommerce, prices, history, 30days, lowest
 Requires at least: 5.8
 Tested up to: 6.6.1
 Requires PHP: 7.2
-Stable tag: 2.1
+Stable tag: {VERSION}
 License: MIT License
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
@@ -120,6 +120,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 = {VERSION} =
 * Fixed: Reverted change #89 from 2.1
+* Fixed: Price selection for sale start was comparing saved historicial timestamps in GMT0 with timestamp of the sale start with local offset (#96)
 
 = 2.1 =
 * New: Additional public methods for external integrations. (#91)
