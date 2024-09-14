@@ -7,7 +7,7 @@ Tags: omnibus, WooCommerce, prices, history, 30days, lowest
 Requires at least: 5.8
 Tested up to: 6.6.1
 Requires PHP: 7.2
-Stable tag: 2.1.1
+Stable tag: {VERSION}
 License: MIT License
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
@@ -117,6 +117,9 @@ Yes, on the plugin configuration screen click the button 'Clean history'. This w
 Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history/issues).
 
 == Changelog ==
+
+{VERSION}
+* Fixed: Plugin was not available on mutlisite installations. (#100)
 
 = 2.1.1 =
 * Fixed: Reverted change #89 from 2.1
