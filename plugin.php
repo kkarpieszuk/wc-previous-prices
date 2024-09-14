@@ -18,7 +18,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 require_once __DIR__ . '/constants.php';
 
-define( 'WC_PRICE_HISTORY_VERSION', '2.1.1' );
+define( 'WC_PRICE_HISTORY_VERSION', '{VERSION}' );
 
 if ( ! function_exists( 'wcpricehistory_fs' ) ) {
 	// Create a helper function for easy SDK access.
@@ -74,16 +74,17 @@ function get_wc_price_history_version(): string {
 }
 
 // Handle missing WooCommerce.
-if ( ! in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ), true ) ) {
-	add_action( 'admin_notices', function () {
-		?>
-		<div class="notice notice-error">
-			<p><?php esc_html_e( 'WooCommerce Price History plugin requires WooCommerce to be installed and active.', 'wc-price-history' ); ?></p>
-		</div>
-		<?php
-	} );
-	return;
-}
+add_action( 'plugins_loaded', function () {
+	if ( ! function_exists( 'WC' ) ) {
+		add_action( 'admin_notices', function () {
+			?>
+			<div class="notice notice-error">
+				<p><?php esc_html_e( 'WooCommerce Price History plugin requires WooCommerce to be installed and active.', 'wc-price-history' ); ?></p>
+			</div>
+			<?php
+		} );
+	}
+} );
 
 $hooks = new Hooks();
 $hooks->register_hooks();
