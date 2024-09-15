@@ -80,3 +80,14 @@ cd svn-checkout
 
 svn status
 
+# for each file in svn status marked with ? add it to svn
+for file in $(svn status | grep '?' | awk '{print $2}'); do
+  svn add $file
+done
+
+svn status
+
+# svn ci -m "Release $VERSION"
+
+# svn cp trunk tags/$VERSION
+
