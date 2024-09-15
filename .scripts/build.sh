@@ -22,10 +22,11 @@ esac
 # make build directory and copy all files to it.
 rm -rf build
 mkdir build
-rsync -av --exclude='build' . build/
+mkdir build/gitversion
+rsync -av --exclude='build' . build/gitversion/
 
 # Go to the build directory.
-cd build
+cd build/gitversion
 
 # Run composer install.
 composer install --no-dev
@@ -38,3 +39,4 @@ rm -rf .git .github .husky .scripts node_modules \
  tests .gitignore .phpunit.result.cache composer.* \
  package-lock.json package.json phpunit.xml \
  phpstan.neon phpstan.neon.dist README.md screenshot-1.png
+
