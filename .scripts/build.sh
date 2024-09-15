@@ -88,7 +88,9 @@ done
 
 svn status
 
-# svn ci -m "Release $VERSION"
+svn ci -m "Release $VERSION"
 
-# svn cp trunk tags/$VERSION
+svn cp trunk tags/$VERSION
+
+scn ci -m "Release $VERSION"
 
