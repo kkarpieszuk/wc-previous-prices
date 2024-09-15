@@ -31,7 +31,7 @@ function replace_version_number() {
 BRANCH=${1:-develop}
 
 # Prompt to confirm the branch name before continuing.
-read -r -p "Branch: $BRANCH. Continue? [y/N] " response
+read -r -p "$(echo -e '\e[1;31mBuild will be made from branch: '"$BRANCH"'. Continue? \e[0m [y/N]')" response
 case "$response" in
     [yY][eE][sS]|[yY])
         echo "Continuing..."
@@ -49,7 +49,7 @@ git pull
 VERSION=$(grep -oP '(?<=Stable tag: ).*' readme.txt)
 
 # Prompt to confirm the version number before continuing.
-read -r -p "Plugin version: $VERSION. Continue? [y/N] " response
+read -r -p "$(echo -e '\e[1;31mPlugin version: '"$VERSION"'. Continue? \e[0m [y/N]')" response
 case "$response" in
     [yY][eE][sS]|[yY])
         echo "Continuing..."
@@ -108,7 +108,7 @@ done
 svn status
 
 # wait for user input
-read -r -p "Commit changes? [y/N] " response
+read -r -p "$(echo -e '\e[1;31mCommit changes to WordPress.org? \e[0m [y/N]')" response
 case "$response" in
     [yY][eE][sS]|[yY])
         echo "Continuing..."
