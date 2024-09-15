@@ -31,10 +31,10 @@ git checkout develop
 git pull
 
 # Get the plugin version from the readme.txt file.
-PLUGIN_VERSION=$(grep -oP '(?<=Stable tag: ).*' readme.txt)
+VERSION=$(grep -oP '(?<=Stable tag: ).*' readme.txt)
 
 # Prompt to confirm the version number before continuing.
-read -r -p "Plugin version: $PLUGIN_VERSION. Continue? [y/N] " response
+read -r -p "Plugin version: $VERSION. Continue? [y/N] " response
 case "$response" in
     [yY][eE][sS]|[yY])
         echo "Continuing..."
