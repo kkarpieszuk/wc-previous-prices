@@ -88,9 +88,20 @@ done
 
 svn status
 
-svn ci -m "Release $VERSION"
+# wait for user input
+read -r -p "Commit changes? [y/N] " response
+case "$response" in
+    [yY][eE][sS]|[yY])
+        echo "Continuing..."
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+svn ci -m "Pushing $VERSION to the trunk"
 
 svn cp trunk tags/$VERSION
 
-svn ci -m "Release $VERSION"
+svn ci -m "Tagging and releasing $VERSION"
 
