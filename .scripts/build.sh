@@ -27,7 +27,8 @@ function replace_version_number() {
   echo "Replaced {VERSION} with $VERSION in all files."
 }
 
-git checkout develop
+git stash
+git checkout 109/import-export
 git pull
 
 # Get the plugin version from the readme.txt file.
@@ -68,10 +69,11 @@ rm -rf .git .github .husky .scripts node_modules \
 
 replace_version_number
 
-cd ..
 
 # create a zip file.
-zip -r wc-price-history.zip gitversion
+zip -r ../wc-price-history.zip .
+
+cd ..
 
 # Checkout svn repository
 svn checkout https://plugins.svn.wordpress.org/wc-price-history/ svn-checkout
