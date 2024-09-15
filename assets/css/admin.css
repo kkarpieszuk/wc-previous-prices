@@ -110,3 +110,7 @@ a:hover .wc-history-price-rating-stars span:nth-child(5) {
 	color: #F0F0F4;
 	border-color: #F0F0F4;
 }
+
+.wc-price-history-export-error {
+	color: #d21818;
+}

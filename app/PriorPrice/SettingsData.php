@@ -65,6 +65,28 @@ class SettingsData {
 	}
 
 	/**
+	 * Set all settings.
+	 *
+	 * @since {VERSION}
+	 */
+	public function set_all_settings( array $settings ) {
+
+		update_option( 'wc_price_history_settings', $settings );
+	}
+
+	/**
+	 * Get all settings.
+	 *
+	 * @since {VERSION}
+	 *
+	 * @return array<string, mixed>
+	 */
+	public function get_settings(): array {
+
+		return get_option( 'wc_price_history_settings' );
+	}
+
+	/**
 	 * Get the display on settings.
 	 *
 	 * @since 1.2
