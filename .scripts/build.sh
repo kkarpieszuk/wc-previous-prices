@@ -73,7 +73,7 @@ cd ..
 svn checkout https://plugins.svn.wordpress.org/wc-price-history/ svn-checkout
 
 # Copy files to svn repository
-rsync -av --exclude='svn-checkout' gitversion svn-checkout/trunk/
+cp -r gitversion svn-checkout/trunk/
 
 cd svn-checkout
 
