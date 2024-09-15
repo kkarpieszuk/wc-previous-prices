@@ -67,3 +67,8 @@ rm -rf .git .github .husky .scripts node_modules \
 
 replace_version_number
 
+cd ..
+
+# Checkout svn repository
+svn checkout https://plugins.svn.wordpress.org/wc-price-history/ svn-checkout
+
