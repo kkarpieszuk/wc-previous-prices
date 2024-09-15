@@ -70,6 +70,9 @@ replace_version_number
 
 cd ..
 
+# create a zip file.
+zip -r wc-price-history.zip gitversion
+
 # Checkout svn repository
 svn checkout https://plugins.svn.wordpress.org/wc-price-history/ svn-checkout
 
