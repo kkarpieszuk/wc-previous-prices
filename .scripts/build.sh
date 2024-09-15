@@ -27,8 +27,22 @@ function replace_version_number() {
   echo "Replaced {VERSION} with $VERSION in all files."
 }
 
+# take the branch name from the command line argument. If not specified, default to develop.
+BRANCH=${1:-develop}
+
+# Prompt to confirm the branch name before continuing.
+read -r -p "Branch: $BRANCH. Continue? [y/N] " response
+case "$response" in
+    [yY][eE][sS]|[yY])
+        echo "Continuing..."
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
 git stash
-git checkout 109/import-export
+git checkout $BRANCH
 git pull
 
 # Get the plugin version from the readme.txt file.
