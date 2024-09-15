@@ -54,6 +54,7 @@ rsync -av --exclude='build' . build/gitversion/
 cd build/gitversion
 
 # Run composer install.
+rm -rf vendor
 composer install --no-dev
 
 # make pot file.
