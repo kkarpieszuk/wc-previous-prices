@@ -66,5 +66,11 @@ class Hooks {
 
 		$ajax = new Ajax();
 		$ajax->register_hooks();
+
+		if (  class_exists( 'WP_CLI' ) ) {
+			$wpcli = new WpCli\AddHistory( $history_storage, $settings_data, new Taxes() );
+			$wpcli->register_hooks();
+		}
+
 	}
 }
