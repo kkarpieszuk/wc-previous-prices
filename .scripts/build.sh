@@ -82,6 +82,7 @@ svn status
 
 # for each file in svn status marked with ? add it to svn
 for file in $(svn status | grep '?' | awk '{print $2}'); do
+  echo "Adding $file to svn"
   svn add $file
 done
 
