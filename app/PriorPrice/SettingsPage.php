@@ -428,6 +428,8 @@ class SettingsPage {
 								</p>
 							</fieldset>
 					</tr>
+
+					<?php do_action( 'wc_price_history_settings_page_danger_zone' ); ?>
 				</table>
 			</div>
 			<div class="wc-history-price-admin__right">
