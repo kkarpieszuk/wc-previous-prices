@@ -120,6 +120,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 {VERSION}
 * Fixed: Plugin was not available on mutlisite installations. (#100)
+* Fixed: Saved variable products sometimes had lowest price set to zero. (#111)
 
 = 2.1.1 =
 * Fixed: Reverted change #89 from 2.1
