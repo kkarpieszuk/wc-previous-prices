@@ -221,23 +221,23 @@ class HistoryStorage {
 	 */
 	public function fill_empty_history( int $product_id, array $history ) : array {
 
-		if ( empty( $history ) ) {
-			$product = wc_get_product( $product_id );
-
-			if ( ! $product ) {
-				return [];
-			}
-
-			$price        = (float) $product->get_price();
-			$current_time = $this->get_time_with_offset();
-
-			$history[ $current_time ]                  = $price;
-			$history[ $current_time - DAY_IN_SECONDS ] = $price; // Set the same price for 1 day earlier.
-
-			$this->save_history( $product_id, $history );
+		if ( ! empty( $history ) ) {
+			return $history;
 		}
 
-		return $history;
+		$product = wc_get_product( $product_id );
+
+		if ( ! $product ) {
+			return [];
+		}
+
+		$price        = (float) $product->get_price();
+		$current_time = $this->get_time_with_offset();
+
+		$history[ $current_time ]                  = $price;
+		$history[ $current_time - DAY_IN_SECONDS ] = $price; // Set the same price for 1 day earlier.
+
+		$this->save_history( $product_id, $history );
 	}
 
 	/**
