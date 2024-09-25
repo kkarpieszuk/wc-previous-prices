@@ -36,6 +36,8 @@ class ProductUpdates {
 	 */
 	public function update_price_history( int $product_id ): void {
 
+		remove_action( 'woocommerce_update_product', [ $this, 'update_price_history' ] );
+
 		if ( get_post_status( $product_id ) === 'draft' ) {
 			return;
 		}
@@ -46,7 +48,8 @@ class ProductUpdates {
 			return;
 		}
 
-		$this->history_storage->add_price( $product_id, (float) $product->get_price(), true );
+		$this->history_storage->add_price( $product_id, (float) $product->get_price(), false );
+		$this->maybe_update_price_history_for_variation( $product );
 	}
 
 	/**
@@ -73,5 +76,23 @@ class ProductUpdates {
 		}
 
 		$this->history_storage->add_first_price( $product_id, (float) $product->get_price() );
+	}
+
+	/**
+	 * Update price history for variations.
+	 *
+	 * @since {VERSION}
+	 *
+	 * @param WC_Product_Variable|WC_Product $product Product.
+	 */
+	private function maybe_update_price_history_for_variation( $product ): void {
+
+		if ( $product->is_type( 'variable' ) ) {
+			$variations = $product->get_available_variations();
+			foreach ( $variations as $variation ) {
+				$product = wc_get_product( $variation['variation_id'] );
+				$this->history_storage->add_price( $product->get_id(), (float) $product->get_price(), false );
+			}
+		}
 	}
 }
