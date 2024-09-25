@@ -231,7 +231,12 @@ class HistoryStorage {
 			return [];
 		}
 
-		$price        = (float) $product->get_price();
+		$price = (float) $product->get_price();
+
+		if ( $price <= 0 ) {
+			return [];
+		}
+
 		$current_time = $this->get_time_with_offset();
 
 		$history[ $current_time ]                  = $price;
