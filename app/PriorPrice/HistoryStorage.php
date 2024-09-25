@@ -144,6 +144,8 @@ class HistoryStorage {
 	/**
 	 * Add first price to the history.
 	 *
+	 * Do not add price if it is zero.
+	 *
 	 * @since 1.7.4
 	 *
 	 * @param int   $product_id Product ID.
@@ -152,6 +154,10 @@ class HistoryStorage {
 	 * @return int
 	 */
 	public function add_first_price( int $product_id, float $price ) {
+
+		if ( $price <= 0 ) {
+			return 0;
+		}
 
 		$history[ $this->get_time_with_offset() ] = $price;
 
@@ -182,15 +188,21 @@ class HistoryStorage {
 	 * Get pricing history for $product_id.
 	 *
 	 * @since 1.1
+	 * @since {VERSION} Added $fill_empty parameter.
 	 *
-	 * @param int $product_id Product ID.
+	 * @param int  $product_id Product ID.
+	 * @param bool $fill_empty Fill empty history.
 	 *
 	 * @return array<int, float>
 	 */
-	public function get_history( int $product_id ) : array {
+	public function get_history( int $product_id, bool $fill_empty = true ) : array {
 
 		$meta = get_post_meta( $product_id, self::cf_key, true );
 		$meta = is_array( $meta ) ? $meta : [];
+
+		if ( ! $fill_empty ) {
+			return $meta;
+		}
 
 		return $this->fill_empty_history( $product_id, $meta );
 	}
