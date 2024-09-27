@@ -68,8 +68,12 @@ class SettingsData {
 	 * Set all settings.
 	 *
 	 * @since {VERSION}
+	 *
+	 * @param array<string, mixed> $settings Settings.
+	 *
+	 * @return void
 	 */
-	public function set_all_settings( array $settings ) {
+	public function set_all_settings( array $settings ): void {
 
 		update_option( 'wc_price_history_settings', $settings );
 	}

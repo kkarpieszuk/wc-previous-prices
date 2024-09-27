@@ -13,22 +13,17 @@
     "autoload": {
         "psr-4": {
             "PriorPrice\\": "app/PriorPrice"
-        },
-        "files": [
-            "vendor/freemius/wordpress-sdk/start.php"
-        ]
+        }
     },
     "require-dev": {
         "phpstan/phpstan": "^1.9",
         "szepeviktor/phpstan-wordpress": "^1.1",
         "phpstan/extension-installer": "^1.2",
         "php-stubs/woocommerce-stubs": "^7.2",
-        "10up/wp_mock": "*"
+        "10up/wp_mock": "*",
+        "phpunit/phpunit": "^9.6"
     },
     "config": {
-        "platform": {
-          "php": "7.2"
-        },
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
