@@ -144,6 +144,8 @@ class HistoryStorage {
 	/**
 	 * Add first price to the history.
 	 *
+	 * Do not add price if it is zero.
+	 *
 	 * @since 1.7.4
 	 *
 	 * @param int   $product_id Product ID.
@@ -152,6 +154,10 @@ class HistoryStorage {
 	 * @return int
 	 */
 	public function add_first_price( int $product_id, float $price ) {
+
+		if ( $price <= 0 ) {
+			return 0;
+		}
 
 		$history[ $this->get_time_with_offset() ] = $price;
 
@@ -182,15 +188,21 @@ class HistoryStorage {
 	 * Get pricing history for $product_id.
 	 *
 	 * @since 1.1
+	 * @since {VERSION} Added $fill_empty parameter.
 	 *
-	 * @param int $product_id Product ID.
+	 * @param int  $product_id Product ID.
+	 * @param bool $fill_empty Fill empty history.
 	 *
 	 * @return array<int, float>
 	 */
-	public function get_history( int $product_id ) : array {
+	public function get_history( int $product_id, bool $fill_empty = true ) : array {
 
 		$meta = get_post_meta( $product_id, self::cf_key, true );
 		$meta = is_array( $meta ) ? $meta : [];
+
+		if ( ! $fill_empty ) {
+			return $meta;
+		}
 
 		return $this->fill_empty_history( $product_id, $meta );
 	}
@@ -209,23 +221,28 @@ class HistoryStorage {
 	 */
 	public function fill_empty_history( int $product_id, array $history ) : array {
 
-		if ( empty( $history ) ) {
-			$product = wc_get_product( $product_id );
-
-			if ( ! $product ) {
-				return [];
-			}
-
-			$price        = (float) $product->get_price();
-			$current_time = $this->get_time_with_offset();
-
-			$history[ $current_time ]                  = $price;
-			$history[ $current_time - DAY_IN_SECONDS ] = $price; // Set the same price for 1 day earlier.
-
-			$this->save_history( $product_id, $history );
+		if ( ! empty( $history ) ) {
+			return $history;
 		}
 
-		return $history;
+		$product = wc_get_product( $product_id );
+
+		if ( ! $product ) {
+			return [];
+		}
+
+		$price = (float) $product->get_price();
+
+		if ( $price <= 0 ) {
+			return [];
+		}
+
+		$current_time = $this->get_time_with_offset();
+
+		$history[ $current_time ]                  = $price;
+		$history[ $current_time - DAY_IN_SECONDS ] = $price; // Set the same price for 1 day earlier.
+
+		$this->save_history( $product_id, $history );
 	}
 
 	/**

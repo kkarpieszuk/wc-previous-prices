@@ -66,5 +66,11 @@ class Hooks {
 
 		$ajax = new Ajax();
 		$ajax->register_hooks();
+
+		$export = new Export( $history_storage, $settings_data );
+		$export->register_hooks();
+
+		$import = new Import( $settings_data, $history_storage );
+		$import->register_hooks();
 	}
 }
