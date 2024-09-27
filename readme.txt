@@ -122,6 +122,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 * Fixed: Plugin was not available on mutlisite installations. (#100)
 * Fixed: Saved variable products sometimes had lowest price set to zero. (#111)
 * New: Added debug feature to export product with price history to JSON file and import it back. (#109)
+* Maitenance: Fixed unit tests. (#113)
 
 = 2.1.1 =
 * Fixed: Reverted change #89 from 2.1

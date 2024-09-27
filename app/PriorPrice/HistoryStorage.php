@@ -243,6 +243,8 @@ class HistoryStorage {
 		$history[ $current_time - DAY_IN_SECONDS ] = $price; // Set the same price for 1 day earlier.
 
 		$this->save_history( $product_id, $history );
+
+		return $history;
 	}
 
 	/**
