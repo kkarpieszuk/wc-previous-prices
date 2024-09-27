@@ -7,7 +7,7 @@ Tags: omnibus, WooCommerce, prices, history, 30days, lowest
 Requires at least: 5.8
 Tested up to: 6.6.1
 Requires PHP: 7.2
-Stable tag: 2.2.0
+Stable tag: 2.1.3
 License: MIT License
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
@@ -122,7 +122,8 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 * Fixed: Plugin was not available on mutlisite installations. (#100)
 * Fixed: Saved variable products sometimes had lowest price set to zero. (#111)
 * New: Added debug feature to export product with price history to JSON file and import it back. (#109)
-* Maitenance: Fixed unit tests. (#113)
+* Maintenance: Added build script to automate plugin release process. (#103)
+* Maintenance: Fixed unit tests. (#113)
 
 = 2.1.1 =
 * Fixed: Reverted change #89 from 2.1
