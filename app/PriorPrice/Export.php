@@ -2,6 +2,9 @@
 
 namespace PriorPrice;
 
+use WC_Product;
+use WC_Product_Variable;
+
 /**
  * Export class.
  *
@@ -35,7 +38,7 @@ class Export {
 	 *
 	 * @since {VERSION}
 	 */
-	public function register_hooks() {
+	public function register_hooks(): void {
 		// Add metabox on product edit page.
 		add_action( 'add_meta_boxes', [ $this, 'add_meta_box' ] );
 
@@ -47,7 +50,7 @@ class Export {
 	 *
 	 * @since {VERSION}
 	 */
-	public function add_meta_box() {
+	public function add_meta_box(): void {
 
 		add_meta_box(
 			'wc_price_history_export',
@@ -64,7 +67,7 @@ class Export {
 	 *
 	 * @since {VERSION}
 	 */
-	public function render_meta_box() {
+	public function render_meta_box(): void {
 
 		$product = wc_get_product();
 
@@ -75,7 +78,7 @@ class Export {
 		?>
 		<p>
 			<button type="button"
-				data-product-id="<?php echo esc_attr( $product->get_id() ); ?>"
+				data-product-id="<?php echo intval( $product->get_id() ); ?>"
 				class="button button-secondary"
 				id="wc-price-history-export-product-with-price-history">
 				<?php esc_html_e( 'Export debug data', 'wc-price-history' ); ?>
@@ -133,16 +136,12 @@ class Export {
 		];
 
 		if ( $product->is_type( 'variable' ) ) {
-			$variations = $product->get_available_variations();
+			/** @var WC_Product_Variable $product */
+			$variations = $product->get_available_variations( 'objects' );
 
 			foreach ( $variations as $variation ) {
 
-				$variation = wc_get_product( $variation['variation_id'] );
-
-				if ( ! $variation ) {
-					continue;
-				}
-
+				/** @var WC_Product $variation */
 				$variation_history = $this->history_storage->get_history( $variation->get_id() );
 
 				$variation_data = [

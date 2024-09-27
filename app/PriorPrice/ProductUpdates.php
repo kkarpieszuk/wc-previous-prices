@@ -2,6 +2,9 @@
 
 namespace PriorPrice;
 
+use WC_Product;
+use WC_Product_Variable;
+
 class ProductUpdates {
 
 	/**
@@ -49,7 +52,12 @@ class ProductUpdates {
 		}
 
 		$this->history_storage->add_price( $product_id, (float) $product->get_price(), false );
-		$this->maybe_update_price_history_for_variation( $product );
+
+		if ( $product->is_type( 'variable' ) ) {
+			/** @var WC_Product_Variable $product */
+			$this->maybe_update_price_history_for_variation( $product );
+		}
+
 	}
 
 	/**
@@ -83,16 +91,14 @@ class ProductUpdates {
 	 *
 	 * @since {VERSION}
 	 *
-	 * @param WC_Product_Variable|WC_Product $product Product.
+	 * @param WC_Product_Variable $product Product.
 	 */
-	private function maybe_update_price_history_for_variation( $product ): void {
+	private function maybe_update_price_history_for_variation( WC_Product_Variable $product ): void {
 
-		if ( $product->is_type( 'variable' ) ) {
-			$variations = $product->get_available_variations();
-			foreach ( $variations as $variation ) {
-				$product = wc_get_product( $variation['variation_id'] );
-				$this->history_storage->add_price( $product->get_id(), (float) $product->get_price(), false );
-			}
+		$variations = $product->get_available_variations( 'objects' );
+		foreach ( $variations as $variation ) {
+			/** @var WC_Product $variation */
+			$this->history_storage->add_price( $variation->get_id(), (float) $variation->get_price(), false );
 		}
 	}
 }

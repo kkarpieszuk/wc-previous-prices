@@ -38,7 +38,7 @@ class Import {
 	 *
 	 * @since {VERSION}
 	 */
-	public function register_hooks() {
+	public function register_hooks(): void {
 		add_action( 'wc_price_history_settings_page_danger_zone', [ $this, 'render_settings_section' ] );
 		add_action( 'wp_ajax_wc_price_history_import_file', [ $this, 'import_file' ] );
 	}
@@ -48,7 +48,7 @@ class Import {
 	 *
 	 * @since {VERSION}
 	 */
-	public function render_settings_section() {
+	public function render_settings_section(): void {
 
 		?>
 		<tr>
@@ -116,18 +116,24 @@ class Import {
 
 		$file = wp_unslash( $_FILES['wc_price_history_import_file'] );
 
-		if ( ! $file ) {
-			wp_send_json_error( [ 'message' => esc_html__( 'Invalid file', 'wc-price-history' ) ] );
+		if ( ! $file || ! $file['tmp_name'] ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'Invalid file, file was not uploaded', 'wc-price-history' ) ] );
 		}
 
 		$settings_override = isset( $_POST['wc_price_history_import_settings_override'] ) && $_POST['wc_price_history_import_settings_override'] === 'true';
 		$product_override  = isset( $_POST['wc_price_history_import_product_override'] ) && $_POST['wc_price_history_import_product_override']   === 'true';
 
-		$import_data = json_decode( file_get_contents( $file['tmp_name'] ), true );
+		$import_data = file_get_contents( $file['tmp_name'] );
+
+		if ( ! $import_data ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'Invalid file, the file is empty', 'wc-price-history' ) ] );
+		}
+
+		$import_data = json_decode( $import_data, true );
 		$import_data = maybe_unserialize( $import_data['serialized'] );
 
 		if ( ! $import_data ) {
-			wp_send_json_error( [ 'message' => esc_html__( 'Invalid file', 'wc-price-history' ) ] );
+			wp_send_json_error( [ 'message' => esc_html__( 'Invalid file, the file is not a valid JSON', 'wc-price-history' ) ] );
 		}
 
 		if ( $settings_override ) {
