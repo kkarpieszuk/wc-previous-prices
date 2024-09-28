@@ -5,7 +5,7 @@ namespace PriorPrice;
 /**
  * Import class.
  *
- * @since {VERSION}
+ * @since 2.1.3
  */
 class Import {
 
@@ -22,7 +22,7 @@ class Import {
 	/**
 	 * Constructor.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 *
 	 * @param \PriorPrice\SettingsData   $settings_data   Settings data.
 	 * @param \PriorPrice\HistoryStorage $history_storage History storage.
@@ -36,7 +36,7 @@ class Import {
 	/**
 	 * Register hooks.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 */
 	public function register_hooks(): void {
 		add_action( 'wc_price_history_settings_page_danger_zone', [ $this, 'render_settings_section' ] );
@@ -46,7 +46,7 @@ class Import {
 	/**
 	 * Render settings section.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 */
 	public function render_settings_section(): void {
 
@@ -104,7 +104,7 @@ class Import {
 	/**
 	 * Import file.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 *
 	 * @return void
 	 */

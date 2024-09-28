@@ -8,7 +8,7 @@ use WC_Product_Variable;
 /**
  * Export class.
  *
- * @since {VERSION}
+ * @since 2.1.3
  */
 class Export {
 
@@ -25,7 +25,7 @@ class Export {
 	/**
 	 * Constructor.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 */
 	public function __construct( HistoryStorage $history_storage, SettingsData $settings_data ) {
 
@@ -36,7 +36,7 @@ class Export {
 	/**
 	 * Register hooks.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 */
 	public function register_hooks(): void {
 		// Add metabox on product edit page.
@@ -48,7 +48,7 @@ class Export {
 	/**
 	 * Add metabox to product edit page.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 */
 	public function add_meta_box(): void {
 
@@ -65,7 +65,7 @@ class Export {
 	/**
 	 * Render metabox.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 */
 	public function render_meta_box(): void {
 
@@ -93,7 +93,7 @@ class Export {
 	/**
 	 * Export product with price history.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 *
 	 * @return void
 	 */
