@@ -24,11 +24,11 @@ class AdminAssets {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( 'wc-price-history-admin', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/js/admin.js', [ 'jquery' ], '2.0.0', true );
+		wp_enqueue_script( 'wc-price-history-admin', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/js/admin.js', [ 'jquery' ], WC_PRICE_HISTORY_VERSION, true );
 
-		wp_enqueue_script( 'wc-price-history-export', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/js/export.js', [ 'jquery' ], '{VERSION}', true );
+		wp_enqueue_script( 'wc-price-history-export', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/js/export.js', [ 'jquery' ], WC_PRICE_HISTORY_VERSION, true );
 
-		wp_enqueue_script( 'wc-price-history-import', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/js/import.js', [ 'jquery' ], '{VERSION}', true );
+		wp_enqueue_script( 'wc-price-history-import', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/js/import.js', [ 'jquery' ], WC_PRICE_HISTORY_VERSION, true );
 
 		$nonce = wp_create_nonce( 'wc_price_history' );
 
@@ -59,7 +59,7 @@ class AdminAssets {
 			return;
 		}
 
-		wp_enqueue_style( 'wc-price-history-admin', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/css/admin.css', [], '1.2' );
+		wp_enqueue_style( 'wc-price-history-admin', WC_PRICE_HISTORY_PLUGIN_URL . 'assets/css/admin.css', [], WC_PRICE_HISTORY_VERSION );
 	}
 
 	private function is_settings_page() : bool {

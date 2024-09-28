@@ -188,7 +188,7 @@ class HistoryStorage {
 	 * Get pricing history for $product_id.
 	 *
 	 * @since 1.1
-	 * @since {VERSION} Added $fill_empty parameter.
+	 * @since 2.1.3 Added $fill_empty parameter.
 	 *
 	 * @param int  $product_id Product ID.
 	 * @param bool $fill_empty Fill empty history.

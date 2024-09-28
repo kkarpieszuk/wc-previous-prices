@@ -67,7 +67,7 @@ class SettingsData {
 	/**
 	 * Set all settings.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 *
 	 * @param array<string, mixed> $settings Settings.
 	 *
@@ -81,7 +81,7 @@ class SettingsData {
 	/**
 	 * Get all settings.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 *
 	 * @return array<string, mixed>
 	 */

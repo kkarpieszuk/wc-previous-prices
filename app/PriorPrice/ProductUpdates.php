@@ -89,7 +89,7 @@ class ProductUpdates {
 	/**
 	 * Update price history for variations.
 	 *
-	 * @since {VERSION}
+	 * @since 2.1.3
 	 *
 	 * @param WC_Product_Variable $product Product.
 	 */
