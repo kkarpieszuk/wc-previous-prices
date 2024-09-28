@@ -79,7 +79,8 @@ wp i18n make-pot . languages/wc-price-history.pot
 rm -rf .git .github .husky .scripts node_modules \
  tests .gitignore .phpunit.result.cache composer.* \
  package-lock.json package.json phpunit.xml \
- phpstan.neon phpstan.neon.dist README.md screenshot-1.png
+ phpstan.neon phpstan.neon.dist phpstan-custom-rules \
+ README.md screenshot-1.png
 
 replace_version_number
 

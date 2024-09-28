@@ -8,3 +8,6 @@ parameters:
 	paths:
 		- plugin.php
 		- app
+		- phpstan-custom-rules
+rules:
+	- PhpStanCustomRules\RegisterHooksMethodInstantiationRule
