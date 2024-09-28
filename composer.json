@@ -12,7 +12,8 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "PriorPrice\\": "app/PriorPrice"
+            "PriorPrice\\": "app/PriorPrice",
+            "PhpStanCustomRules\\": "phpstan-custom-rules"
         }
     },
     "require-dev": {

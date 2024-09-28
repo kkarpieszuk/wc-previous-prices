@@ -119,6 +119,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 == Changelog ==
 
 = {VERSION} =
+* Maintenance: Added PHPStan rule to check if classes with register_hooks() method is instantiated only in PriorPrice\Hooks::plugins_loaded() method. (#116)
 
 = 2.1.3 =
 * Fixed: Plugin was not available on mutlisite installations. (#100)
