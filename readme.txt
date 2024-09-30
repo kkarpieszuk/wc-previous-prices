@@ -67,7 +67,7 @@ However, in case you misconfigured the plugin, here are steps to take to make it
 
 Yes, the plugin is compatible with product taxes and variable products (it tracks minimal price for each variation individually).
 
-= Is product working well with discount addons? =
+= Is plugin working well with discount addons? =
 
 That depends on the addon. Some addons may not work with the plugin, some may work. For time being we recommend using the plugin with the following addon:
 
