@@ -6,6 +6,8 @@ namespace PriorPrice;
  * HistoryStorage class
  *
  * @since 1.1
+ *
+ * @phpstan-type GmtOffsetOption int|false
  */
 class HistoryStorage {
 
@@ -379,6 +381,13 @@ class HistoryStorage {
 	 */
 	private function get_time_with_offset() : int {
 
-		return time() + ( (int) get_option( 'gmt_offset' ) * HOUR_IN_SECONDS );
+		/** @var GmtOffsetOption */
+		$offset = get_option( 'gmt_offset' );
+
+		if ( $offset === false ) {
+			return time();
+		}
+
+		return time() + ( (int) $offset * HOUR_IN_SECONDS );
 	}
 }
