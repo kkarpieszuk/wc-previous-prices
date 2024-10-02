@@ -31,7 +31,7 @@ class Hooks {
 		$settings_data = new SettingsData();
 		$settings_data->register_hooks();
 
-		$settings = new SettingsPage();
+		$settings = new SettingsPage( $settings_data);
 		$settings->register_hooks();
 
 		$migrations = new Migrations( $history_storage );

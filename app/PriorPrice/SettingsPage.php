@@ -4,6 +4,14 @@ namespace PriorPrice;
 
 class SettingsPage {
 
+	/** @var SettingsData */
+	private $settings_data;
+
+	public function __construct( SettingsData $settings_data ) {
+
+		$this->settings_data = $settings_data;
+	}
+
 	/**
 	 * Register hooks.
 	 *
@@ -77,7 +85,8 @@ class SettingsPage {
 			// Add a settings updated message
 			add_settings_error( 'wc_price_history_settings', 'settings_updated', __( 'Settings saved.', 'wc-price-history' ), 'updated' );
 		}
-		$settings = get_option( 'wc_price_history_settings' );
+
+		$settings = (array) $this->settings_data->get_settings();
 		?>
 		<div class="wrap wc-history-price-admin">
 			<h1><?php esc_html_e( 'Price History Settings', 'wc-price-history' ); ?></h1>
@@ -287,7 +296,7 @@ class SettingsPage {
 									printf(
 										/* translators: %s: {days-set} template slug */
 										esc_html__( 'What to do when price history is older than %s days:', 'wc-price-history' ),
-										'<span class="wc-price-history-days-set">' . $settings['days_number'] . '</span>'
+										'<span class="wc-price-history-days-set">' . $this->settings_data->get_days_number() . '</span>'
 										);
 								?>
 							</th>
@@ -298,7 +307,7 @@ class SettingsPage {
 											printf(
 												/* translators: Do not translate {days-set}, it is template slug! */
 												esc_html__( 'It could happen that the last change of price was more than %s days ago. In that case you can choose to hide minimal price, display current price or display custom text.', 'wc-price-history' ),
-												'<span class="wc-price-history-days-set">' . $settings['days_number'] . '</span>'
+												'<span class="wc-price-history-days-set">' . $this->settings_data->get_days_number() . '</span>'
 											);
 										?>
 									</p>
@@ -360,7 +369,7 @@ class SettingsPage {
 												type="checkbox"
 												name="wc_price_history_settings[display_line_through]"
 												value="1"
-												<?php checked( isset( $settings['display_line_through'] ) ? $settings['display_line_through'] : 0, 1 ); ?>
+												<?php checked( $this->settings_data->get_display_line_through(), true ); ?>
 											/>
 											<?php esc_attr_e( 'Apply line-through on the price', 'wc-price-history' ) ?>
 										</label>

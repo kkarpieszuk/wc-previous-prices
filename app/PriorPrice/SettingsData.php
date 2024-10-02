@@ -2,6 +2,26 @@
 
 namespace PriorPrice;
 
+/**
+ * Settings data class.
+ *
+ * @since 1.0
+ *
+ * @phpstan-type DisplayOnOption array{ product_page: '0'|'1', shop_page: '0'|'1', related_products: '0'|'1', category_page: '0'|'1', tag_page: '0'|'1' }
+ *
+ * @phpstan-type SettingsDataOption array{
+ *   display_on: DisplayOnOption,
+ *   display_when: string,
+ *   days_number: string,
+ *   count_from: string,
+ *   display_text: string,
+ *   old_history: string,
+ *   old_history_custom_text: string,
+ *   first_scan_status: string,
+ *   first_history_scan: 0|1|2|3,
+ *   display_line_through: bool,
+ * }|false
+ */
 class SettingsData {
 
 	/**
@@ -25,7 +45,7 @@ class SettingsData {
 	public function set_defaults() : void {
 
 		$update   = false;
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 
 		// Handle settings added in 1.2.
 		if ( $settings === false ) {
@@ -83,10 +103,11 @@ class SettingsData {
 	 *
 	 * @since 2.1.3
 	 *
-	 * @return array<string, mixed>
+	 * @return SettingsDataOption
 	 */
-	public function get_settings(): array {
+	public function get_settings() {
 
+		/** @var SettingsDataOption */
 		return get_option( 'wc_price_history_settings' );
 	}
 
@@ -95,11 +116,11 @@ class SettingsData {
 	 *
 	 * @since 1.2
 	 *
-	 * @return array<array<bool>>
+	 * @return array{ product_page?: '0'|'1', shop_page?: '0'|'1', related_products?: '0'|'1', category_page?: '0'|'1', tag_page?: '0'|'1' }|array{}
 	 */
-	public function get_display_on() : array {
+	public function get_display_on() {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['display_on'] ) ) {
 			return [];
 		}
@@ -115,7 +136,7 @@ class SettingsData {
 	 */
 	public function get_display_when() : string {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['display_when'] ) ) {
 			return 'always';
 		}
@@ -131,7 +152,7 @@ class SettingsData {
 	 */
 	public function get_days_number() : int {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['days_number'] ) ) {
 			return 30;
 		}
@@ -147,7 +168,7 @@ class SettingsData {
 	 */
 	public function get_count_from() : string {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['count_from'] ) ) {
 			return 'sale_start';
 		}
@@ -163,7 +184,7 @@ class SettingsData {
 	 */
 	public function get_display_text() : string {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['display_text'] ) ) {
 			/* translators: %s - the lowest price in the last 30 days. */
 			$old_format = esc_html__( '30-day low: %s', 'wc-price-history' );
@@ -182,7 +203,7 @@ class SettingsData {
 	 */
 	public function get_display_line_through() : bool {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['display_line_through'] ) ) {
 			return false;
 		}
@@ -198,7 +219,7 @@ class SettingsData {
 	 */
 	public function get_old_history() : string {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['old_history'] ) ) {
 			return 'hide';
 		}
@@ -214,7 +235,7 @@ class SettingsData {
 	 */
 	public function get_old_history_custom_text() : string {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 		if ( ! isset( $settings['old_history_custom_text'] ) ) {
 			return esc_html__( 'Price in the last {days} days is the same as current', 'wc-price-history' );
 		}
@@ -230,7 +251,7 @@ class SettingsData {
 	 */
 	public function get_first_scan_status(): int {
 
-		$settings = get_option( 'wc_price_history_settings' );
+		$settings = $this->get_settings();
 
 		if ( ! isset( $settings[ FirstScan::OPTION_NAME ] ) ) {
 			return FirstScan::SCAN_NOT_STARTED;
@@ -250,7 +271,7 @@ class SettingsData {
 	 */
 	public function set_first_scan_status( int $status ): void {
 
-		$settings                           = get_option( 'wc_price_history_settings' );
+		$settings                           = (array) $this->get_settings();
 		$settings[ FirstScan::OPTION_NAME ] = $status;
 
 		update_option( 'wc_price_history_settings', $settings );
