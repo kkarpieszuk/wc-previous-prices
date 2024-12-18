@@ -10,6 +10,7 @@
  * Requires at least: 5.8
  * Requires PHP: 7.2
  * Plugin URI: https://github.com/kkarpieszuk/wc-price-history
+ * Requires Plugins: woocommerce
  */
 
 use PriorPrice\Hooks;
