@@ -11,8 +11,7 @@ Stable tag: {VERSION}
 License: MIT License
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
-What's the lowest price in the last 30 days? Build customer trust through transparency! Track and display product price history in WooCommerce store
-
+What was the lowest price recently? Build customer trust through transparency! Track and display product price history in WooCommerce store.
 == Description ==
 
 Track WooCommerce© Products prior prices history and display the lowest price in the last 30 days. This plugin allows your WC shop to be compliant with European law which specifies price reduction announcement policy.
@@ -130,6 +129,9 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 == Changelog ==
 
 = {VERSION} =
+* Maintenance: Updated content displayed on plugin page in WordPress repository. (#128)
+
+= 2.1.4 =
 * Maintenance: Added PHPStan rule to check if classes with register_hooks() method is instantiated only in PriorPrice\Hooks::plugins_loaded() method. (#116)
 
 = 2.1.3 =
