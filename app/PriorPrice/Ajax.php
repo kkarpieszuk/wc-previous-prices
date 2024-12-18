@@ -45,6 +45,10 @@ class Ajax {
 			wp_send_json_error( [ 'message' => esc_html__( 'Invalid nonce', 'wc-price-history' ) ] );
 		}
 
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'You do not have permission to clean history', 'wc-price-history' ) ] );
+		}
+
 		$history_storage = new HistoryStorage();
 		$history_storage->clean_history();
 
@@ -55,6 +59,10 @@ class Ajax {
 
 		if ( ! check_ajax_referer( 'wc_price_history', 'security', false ) ) {
 			wp_send_json_error( [ 'message' => esc_html__( 'Invalid nonce', 'wc-price-history' ) ] );
+		}
+
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'You do not have permission to fix history', 'wc-price-history' ) ] );
 		}
 
 		$history_storage = new HistoryStorage();

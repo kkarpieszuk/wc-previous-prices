@@ -103,6 +103,10 @@ class Export {
 			wp_send_json_error( [ 'message' => esc_html__( 'Invalid nonce', 'wc-price-history' ) ] );
 		}
 
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'You do not have permission to export data', 'wc-price-history' ) ] );
+		}
+
 		$product_id = intval( wp_unslash( $_POST['product_id'] ) );
 
 		if ( ! $product_id ) {

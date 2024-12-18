@@ -114,6 +114,10 @@ class Import {
 			wp_send_json_error( [ 'message' => esc_html__( 'Invalid nonce', 'wc-price-history' ) ] );
 		}
 
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( [ 'message' => esc_html__( 'You do not have permission to import data', 'wc-price-history' ) ] );
+		}
+
 		$file = wp_unslash( $_FILES['wc_price_history_import_file'] );
 
 		if ( ! $file || ! $file['tmp_name'] ) {
