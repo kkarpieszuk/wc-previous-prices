@@ -130,6 +130,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 = {VERSION} =
 * Maintenance: Updated content displayed on plugin page in WordPress repository. (#128)
+* Reverted: Removed import feature. (#131)
 
 = 2.1.4 =
 * Maintenance: Added PHPStan rule to check if classes with register_hooks() method is instantiated only in PriorPrice\Hooks::plugins_loaded() method. (#116)
