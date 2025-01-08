@@ -51,7 +51,7 @@ class Marketing {
 	 * @return void
 	 */
 	public function settings_page_rate_us_text() : void {
-		echo $this->get_review_link();
+		echo wp_kses( $this->get_review_link(), wp_kses_allowed_html( 'post' ) );
 	}
 
 	/**

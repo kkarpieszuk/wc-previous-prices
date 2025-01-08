@@ -185,6 +185,7 @@ class FirstScan {
 
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.DirectQuery
 		return $wpdb->get_results(
 			$wpdb->prepare(
 				"SELECT p.ID

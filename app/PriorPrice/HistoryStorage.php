@@ -305,6 +305,7 @@ class HistoryStorage {
 
 		global $wpdb;
 
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.DirectDatabaseQuery.DirectQuery
 		$wpdb->query(
 			$wpdb->prepare(
 				"DELETE
@@ -322,27 +323,22 @@ class HistoryStorage {
 
 	private function extend_all_histories_before( int $days = 1 ) : void {
 
-		global $wpdb;
-
-		$products = $wpdb->get_results(
-			$wpdb->prepare(
-				"SELECT post_id
-				FROM {$wpdb->postmeta}
-				WHERE meta_key = %s",
-				self::cf_key
-			)
-		);
+		$products = get_posts([
+			'post_type' => 'product',
+			'meta_key' => self::cf_key, // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'posts_per_page' => -1,
+		]);
 
 		// Foreach product, get the earliest history timestamp and price, prepend this history with timestamp for $days ago and the same price.
 		foreach ( $products as $product ) {
-			$history = $this->get_history( $product->post_id );
+			$history = $this->get_history( $product->ID );
 
 			$earliest_timestamp = min( array_keys( $history ) );
 			$earliest_price     = $history[ $earliest_timestamp ];
 
 			$history[ $earliest_timestamp - ( $days * DAY_IN_SECONDS ) ] = $earliest_price;
 
-			$this->save_history( $product->post_id, $history );
+			$this->save_history( $product->ID, $history );
 		}
 	}
 
