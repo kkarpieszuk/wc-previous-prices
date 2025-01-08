@@ -73,7 +73,7 @@ class SettingsPage {
 	 * @return void
 	 */
 	public function render() {
-		if ( isset( $_GET['settings-updated'] ) ) {
+		if ( isset( $_GET['settings-updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			// Add a settings updated message
 			add_settings_error( 'wc_price_history_settings', 'settings_updated', __( 'Settings saved.', 'wc-price-history' ), 'updated' );
 		}

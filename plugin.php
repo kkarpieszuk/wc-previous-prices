@@ -1,7 +1,7 @@
 <?php
 /*
  * Plugin Name: WC Price History
- * Description: Track WooCommerce Products prior prices history and display the lowest price in the last 30 days (fully configurable). This plugin allows your WC shop to be compliant with European Commission Directive 98/6/EC Article 6a which specifies price reduction announcement policy.
+ * Description: Track WooCommerce Products prior prices history and display the lowest price in the last 30 days (fully configurable). This plugin allows your WC shop to be compliant with European Commission Omnibus Directive 98/6/EC Article 6a which specifies price reduction announcement policy.
  * Author: Konrad Karpieszuk
  * Author URI: https://wpzlecenia.pl
  * Version: {VERSION}
@@ -11,6 +11,7 @@
  * Requires PHP: 7.2
  * Plugin URI: https://github.com/kkarpieszuk/wc-price-history
  * Requires Plugins: woocommerce
+ * License: Expat
  */
 
 use PriorPrice\Hooks;
