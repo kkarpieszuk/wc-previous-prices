@@ -107,7 +107,7 @@ class Export {
 			wp_send_json_error( [ 'message' => esc_html__( 'You do not have permission to export data', 'wc-price-history' ) ] );
 		}
 
-		$product_id = intval( wp_unslash( $_POST['product_id'] ) );
+		$product_id = intval( wp_unslash( $_POST['product_id'] ?? '' ) );
 
 		if ( ! $product_id ) {
 			wp_send_json_error( [ 'message' => esc_html__( 'Invalid product ID', 'wc-price-history' ) ] );

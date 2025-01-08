@@ -73,7 +73,7 @@ class SettingsPage {
 	 * @return void
 	 */
 	public function render() {
-		if ( isset( $_GET['settings-updated'] ) ) {
+		if ( isset( $_GET['settings-updated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			// Add a settings updated message
 			add_settings_error( 'wc_price_history_settings', 'settings_updated', __( 'Settings saved.', 'wc-price-history' ), 'updated' );
 		}
@@ -224,7 +224,7 @@ class SettingsPage {
 										<?php esc_html_e( 'Omnibus: European Union Guidance requires displaying the lowest price before the sale started.', 'wc-price-history' ); ?>
 									</p>
 									<p class="description">
-										<span class="wc-price-history-warning"><?php esc_attr_e( 'Heads up!' ); ?></span><br>
+										<span class="wc-price-history-warning"><?php esc_attr_e( 'Heads up!', 'wc-price-history' ); ?></span><br>
 										<?php esc_html_e( 'Option "Day when product went on sale" works only for products with "Sale price dates" set on Edit product page (setting sale start date will be enough).', 'wc-price-history' ); ?>
 										<br>
 										<?php esc_html_e( 'If product does not have scheduled such date, minimal price will be counted from current day and this option will be ignored.', 'wc-price-history' ); ?>
@@ -233,7 +233,20 @@ class SettingsPage {
 										$admin_page_url = admin_url( 'admin.php?page=wc-status&tab=logs' );
 										$a_href         = sprintf( '<a href="%s">%s</a>', $admin_page_url, esc_html__( 'WooCommerce > Status > Logs', 'wc-price-history' ) );
 										/* translators: %s: URL to WooCommerce logs page, do not translate wc-price-history, it is a slug */
-										printf( esc_html__( 'All products which does not have set sale start date will be logged in %s (look for error log with name starting from wc-price-history).', 'wc-price-history' ), $a_href );
+										printf(
+											/* translators: %s: URL to WooCommerce logs page, do not translate wc-price-history, it is a slug */
+											esc_html__(
+												'All products which does not have set sale start date will be logged in %s (look for error log with name starting from wc-price-history).', 'wc-price-history'
+											),
+											wp_kses(
+												$a_href,
+												[
+													'a' => [
+														'href' => [],
+													],
+												]
+											)
+										);
 										?>
 									</p>
 								</fieldset>
@@ -249,7 +262,7 @@ class SettingsPage {
 												type="number"
 												name="wc_price_history_settings[days_number]"
 												id="wc-price-history-days-number"
-												value="<?php echo isset( $settings['days_number'] ) ? $settings['days_number'] : 30; ?>"
+												value="<?php echo isset( $settings['days_number'] ) ? (int) $settings['days_number'] : 30; ?>"
 											/>
 											<?php esc_attr_e( 'days', 'wc-price-history' ) ?></label>
 									</p>
@@ -270,7 +283,7 @@ class SettingsPage {
 												name="wc_price_history_settings[display_text]"
 												class="wc-price-history-wide-field"
 												<?php /* translators: Do not translate {price}, it is template slug! */ ?>
-												value="<?php echo isset( $settings['display_text'] ) ? $settings['display_text'] : esc_html__( '30-day low: {price}', 'wc-price-history' ); ?>"
+												value="<?php echo isset( $settings['display_text'] ) ? esc_html( $settings['display_text'] ) : esc_html__( '30-day low: {price}', 'wc-price-history' ); ?>"
 											/>
 										</label>
 									</p>
@@ -287,7 +300,7 @@ class SettingsPage {
 									printf(
 										/* translators: %s: {days-set} template slug */
 										esc_html__( 'What to do when price history is older than %s days:', 'wc-price-history' ),
-										'<span class="wc-price-history-days-set">' . $settings['days_number'] . '</span>'
+										'<span class="wc-price-history-days-set">' . (int) $settings['days_number'] . '</span>'
 										);
 								?>
 							</th>
@@ -298,7 +311,7 @@ class SettingsPage {
 											printf(
 												/* translators: Do not translate {days-set}, it is template slug! */
 												esc_html__( 'It could happen that the last change of price was more than %s days ago. In that case you can choose to hide minimal price, display current price or display custom text.', 'wc-price-history' ),
-												'<span class="wc-price-history-days-set">' . $settings['days_number'] . '</span>'
+												'<span class="wc-price-history-days-set">' . (int) $settings['days_number'] . '</span>'
 											);
 										?>
 									</p>
@@ -340,7 +353,7 @@ class SettingsPage {
 												name="wc_price_history_settings[old_history_custom_text]"
 												class="wc-price-history-wide-field"
 												<?php /* translators: Do not translate {days}, it is template slug! */ ?>
-												value="<?php echo isset( $settings['old_history_custom_text'] ) ? $settings['old_history_custom_text'] : esc_html__( 'Price in the last {days} days is the same as current', 'wc-price-history' ); ?>"
+												value="<?php echo isset( $settings['old_history_custom_text'] ) ? esc_html( $settings['old_history_custom_text'] ) : esc_html__( 'Price in the last {days} days is the same as current', 'wc-price-history' ); ?>"
 											/>
 										</label>
 									</p>

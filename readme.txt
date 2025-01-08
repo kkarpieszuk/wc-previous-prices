@@ -1,4 +1,4 @@
-=== WC Price History for Omnibus ===
+=== WC Price History ===
 
 Plugin Name: WC Price History
 Short Description: Show the lowest product price in the last 30 days. Configurable, works with Omnibus European Union directive by default.
@@ -8,7 +8,7 @@ Requires at least: 5.8
 Tested up to: 6.7.1
 Requires PHP: 7.2
 Stable tag: {VERSION}
-License: MIT License
+License: Expat
 License URI: https://mit-license.org/
 Donate link: https://buycoffee.to/wpzlecenia
 What was the lowest price recently? Build customer trust through transparency! Track and display product price history in WooCommerce store.
@@ -130,6 +130,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 
 = {VERSION} =
 * Maintenance: Updated content displayed on plugin page in WordPress repository. (#128)
+* Maintenance: Plugin passes now Plugin Check Plugin tests. (#133)
 * Reverted: Removed import feature. (#131)
 
 = 2.1.4 =

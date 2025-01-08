@@ -55,6 +55,6 @@ class AdminAssets {
 	}
 
 	private function is_settings_page() : bool {
-		return isset( $_GET['page'] ) && $_GET['page'] === 'wc-price-history';
+		return isset( $_GET['page'] ) && $_GET['page'] === 'wc-price-history'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 	}
 }
