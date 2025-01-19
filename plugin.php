@@ -17,7 +17,6 @@
 use PriorPrice\Hooks;
 
 require_once __DIR__ . '/vendor/autoload.php';
-require_once __DIR__ . '/vendor/freemius/wordpress-sdk/start.php';
 require_once __DIR__ . '/constants.php';
 
 define( 'WC_PRICE_HISTORY_VERSION', '{VERSION}' );
