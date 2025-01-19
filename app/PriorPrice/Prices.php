@@ -83,7 +83,22 @@ class Prices {
 	 */
 	public function lowest_price_html( \WC_Product $wc_product ): string {
 
+		/**
+		 * Filter the lowest price HTML before displaying it.
+		 *
+		 * @since {VERSION}
+		 *
+		 * @param bool|float $lowest_pre Lowest price HTML.
+		 * @param \WC_Product $wc_product WC Product.
+		 */
+		$lowest_pre = apply_filters( 'wc_price_history_lowest_price_html_pre', false, $wc_product );
+
 		$days_number = $this->settings_data->get_days_number();
+
+		if ( $lowest_pre !== false && is_numeric( $lowest_pre ) ) {
+			return $this->display_from_template( $lowest_pre, $days_number );
+		}
+
 
 		$lowest = $this->get_lowest_price_raw_non_taxed( $wc_product );
 		$lowest = $this->taxes->apply_taxes( $lowest, $wc_product );
@@ -292,6 +307,17 @@ class Prices {
 
 		$display_text = str_replace( '{price}', $this->display_price_value_html( $lowest ), $display_text );
 		$display_text = str_replace( '{days}', (string) $days_number, $display_text );
+
+		/**
+		 * Filter the display text from template.
+		 *
+		 * @since {VERSION}
+		 *
+		 * @param string    $display_text Display text.
+		 * @param float|int $lowest       Lowest price.
+		 * @param int       $days_number  Days number.
+		 */
+		$display_text = apply_filters( 'wc_price_history_display_from_template', $display_text, $lowest, $days_number );
 
 		return '<div class="wc-price-history prior-price lowest">' . $display_text . '</div>';
 	}
