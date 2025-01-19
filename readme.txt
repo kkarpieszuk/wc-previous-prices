@@ -131,7 +131,7 @@ Please submit the [GitHub issue](https://github.com/kkarpieszuk/wc-price-history
 = {VERSION} =
 * Maintenance: Prepare for replacement of Freemius with Keygen. (#135)
 
-= {2.1.5} =
+= 2.1.5 =
 * Maintenance: Updated content displayed on plugin page in WordPress repository. (#128)
 * Maintenance: Plugin passes now Plugin Check Plugin tests. (#133)
 * Reverted: Removed import feature. (#131)
