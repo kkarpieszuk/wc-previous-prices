@@ -28,8 +28,5 @@
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
-    },
-    "require": {
-        "freemius/wordpress-sdk": "^2.7"
     }
 }
