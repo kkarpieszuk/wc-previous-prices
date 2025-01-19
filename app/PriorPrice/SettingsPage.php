@@ -383,6 +383,16 @@ class SettingsPage {
 									</p>
 								</fieldset>
 						</tr>
+						<?php
+						/**
+						 * Action to add custom fields to settings page.
+						 *
+						 * @since {VERSION}
+						 *
+						 * @param array $settings
+						 */
+						do_action( 'wc_price_history_settings_page_fields', $settings );
+						?>
 					</table>
 					<?php submit_button(); ?>
 				</form>
